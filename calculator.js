@@ -2,26 +2,37 @@ class Calculator {
     constructor(display) { 
         this.display = display
         this.content = ''
+        this.opChecked = true
     }    
 
+    init() {
+        this.opChecked = true
+        this.content = ''
+    }
+
     addNum(n) {
+        this.opChecked = false
         this.content += n
     }
     
     addOp(op) {
+        if(this.opChecked) return
+        this.opChecked = true
         this.content += op
     }
 
     redo() {
-        this.content = ''
+        this.content = '0'
     }
 
     undo() {
+        this.opChecked = true
         this.content = String(this.content).slice(0, -1)
     }
 
     calculate() {
-        this.content = eval(this.content)
+        if (this.opChecked) return
+        this.content = Math.round(eval(String(this.content))*1000)/1000
     }
 
     result() {
@@ -41,6 +52,7 @@ buttons.forEach(button => {
         } else if (button.className === 'redo') {
             calculator.redo()
             calculator.result()
+            calculator.init()
         } else if(button.className === 'res') {
             calculator.calculate()
             calculator.result()
