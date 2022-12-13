@@ -32,7 +32,7 @@ class Calculator {
 
     calculate() {
         if (this.opChecked) return
-        this.content = Math.round(eval(String(this.content))*1000)/1000
+        this.content = Math.round(eval(this.content)*1000)/1000
     }
 
     result() {

@@ -1,0 +1,70 @@
+<script type="text/javascript">
+	/*// Shape - 부모 클래스(superclass)
+	function Shape(x, y) {
+		this.x = x;
+		this.y = y;
+	}
+	// 부모 클래스의 메서드 정의
+	Shape.prototype.move = function(x, y) {
+		console.log(`Shape moved from ${this.x},${this.y} to ${x},${y}`);
+		this.x += x;
+		this.y += y;
+	}
+
+	// Rectangle - 자식 클래스(subclass)
+	function Rectangle(x, y, w, h) {
+		// 자바의 super와 비슷한 기능(new 연산자를 호출 안함! -> shape에서는 this 새 객체를 만들지 않음**)
+		Shape.call(this, x, y); //this에는 빈 객체가 담겨져 있음, shape에서 x, y를 this에 대입
+		this.w = w; 
+		this.h = h;
+	}
+	// Object.create 메서드를 호출하여 Shape.prototype을 프로토타입 객체로 사용하는 비어있는 객체를 생성 후 Rectangle 생성자 함수의 prototype 속성 지정
+	// Rectangle.prototype에 대입될 객체의 모습 => { __proto__: Shape.prototype }
+	Rectangle.prototype = Object.create(Shape.prototype);
+
+	// Rectangle.prototype 객체의 constructor가 Object.create로 인하여 찾을 수 없게 됐으므로 다시 복원**
+	Rectangle.prototype.constructor = Rectangle;
+
+	// Rectangle 생성자 함수를 통해서 생성된 객체가 사용할 공통 메서드 정의
+	Rectangle.prototype.size = function() {
+		return this.w * this.h;
+	}
+	let rect = new Rectangle(0, 0, 20, 10);
+	// Shape.prototype 접근을 통해서 move 메서드를 호출
+
+	// rect의 __proto__는 생성자 함수(클래스)의 prototype을 가리킴
+	// 인스턴스는 __proto__를 갖고, 생성자 함수와 클래스는 .prototype을 갖는다.
+
+	console.log(Rectangle.__proto__); // {}
+	console.log(rect.__proto__); // rectangle
+	console.log(Rectangle.prototype); // shape
+	console.log(Rectangle.__proto__.__proto__); // object
+	console.log(Rectangle.prototype.prototype); // undefined
+	console.log(Rectangle.prototype.__proto__); // shape
+	console.log(Rectangle.__proto__.prototype); // undefined
+
+	// console.log(Shape.__proto__); // {}
+	// console.log(Shape.prototype); // shape
+	// console.log(Shape.__proto__.__proto__); // object
+	// console.log(Shape.prototype.prototype); // undefined
+	// console.log(Shape.prototype.__proto__); // object
+	// console.log(Shape.__proto__.prototype); // undefined*/
+
+	let now = new Date();
+	let christmas = new Date(2022, 12, 25);
+	let year = now.getFullYear();
+	let month = now.getMonth();    //0~11
+	month++;
+	let date = now.getDate();    //일
+	let day = now.getDay();    //요일: 0: 일, 1: 월, ... , 6: 토
+
+	//2022년 9월 첫째날 요일
+	let firstDate = new Date(2022, 9-1, 1);
+	firstDate.getDay();
+
+	//2022년 9월 마지막날 날짜
+	let lastDate = new Date(2022, 9, 0);    //2022년 10(9+1)월 0일 이라는 의미
+	lastDate.getDate();
+
+	console.log(christmas);
+</script>
