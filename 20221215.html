@@ -1,0 +1,30 @@
+<script>
+// Shape - 부모 클래스(superclass)
+function Shape(x, y) {
+	this.x = x;
+	this.y = y;
+}
+// 부모 클래스의 메서드 정의
+Shape.prototype.move = function(x, y) {
+	console.log(`Shape moved from ${this.x},${this.y} to ${x},${y}`);
+	this.x += x;
+	this.y += y;
+}
+
+function Circle(x, y, r) {
+	Shape.call(this, x, y);
+	this.r = r;
+}
+
+Circle.prototype = Object.create(Shape.prototype);
+Circle.prototype.constructor = Circle;
+
+Circle.prototype.area = function() {
+	return 3.14 * this.r / 2;
+}
+
+let circ = new Circle(0, 0, 10);
+console.log(circ.area());
+console.log(circ.move(5, 5));
+
+</script>
