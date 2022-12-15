@@ -1,5 +1,5 @@
 <script>
-// Shape - 부모 클래스(superclass)
+/*// Shape - 부모 클래스(superclass)
 function Shape(x, y) {
 	this.x = x;
 	this.y = y;
@@ -25,6 +25,49 @@ Circle.prototype.area = function() {
 
 let circ = new Circle(0, 0, 10);
 console.log(circ.area());
-console.log(circ.move(5, 5));
+console.log(circ.move(5, 5));*/
+
+/*class Button {
+	constructor(value) {
+		this.value = value;
+	}
+	// click 메서드를 화살표 함수를 이용해서 정의
+	click = () => {
+		alert(this.value);
+	}
+	nonBinded() {
+		alert(this.value);
+	}
+}
+let button1 = new Button("hello");
+setTimeout(button1.click, 1000); // hello
+let button2 = new Button("hello");
+// click 메서드는 화살표 함수로 정의했으므로,
+// 서로 독립적인 함수 객체 참조를 가지게 됨 (내용은 똑같지만 서로 참조가 다른 독립적인 함수)
+console.log( button1.click === button2.click ); // false
+// nonBinded 메서드는 화살표 함수를 이용하지 않고 정의했으므로,
+// 화살표 함수로 정의하지 않았으므로 함수 객체를 공유
+console.log( button1.nonBinded === button2.nonBinded ); // true
+// click은 prototype 객체에도 포함되지 않음
+console.log( Button.prototype.click );
+// 그러나 nonBinded는 prototype 객체에 포함됨
+console.log( Button.prototype.nonBinded );*/
+
+
+// 브라우저 환경에서 메서드를 이벤트 리스너로 설정하는 상황
+class Button {
+	constructor(value) {
+		this.value = value;
+	}
+	click = () => {
+		alert(this.value);
+	}
+}
+let button = new Button("hello");
+document.write('<button>click</button>');
+// 클릭되는 시점에 호출할 콜백 함수로 등록 (즉, 호출 시점엔 맥락이 사라지게 됨)
+// 하지만 클래스 필드의 형태 및 화살표 함수로 정의했으므로 this값(button 객체)을 맥락에 관계 없이 유지
+document.getElementsByTagName('button')[0].onclick = button.click;
+// Q) 버튼 눌러보고 결과 확인해보기
 
 </script>
